@@ -19,6 +19,7 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UIScrollViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         // set up scrollview
         let pageWidth = scrollViewSteps.bounds.width
         let pageHeight = scrollViewSteps.bounds.height
