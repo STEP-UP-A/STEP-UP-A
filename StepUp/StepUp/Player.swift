@@ -16,11 +16,13 @@ class Player: NSObject, NSCoding {
     var stepCount: Int
     var lapCount: Int
     
-    // MARK: Archiving Paths (from FoodTracker)
+    // MARK: Archiving Paths
+    // Define a location to store this Player object in local memory
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
     static let ArchiveURL = DocumentsDirectory.appendingPathComponent("players")
     
     // MARK: Types
+    // Attributes of this Player
     struct PropertyKey { // Find where this is called
         static let name = "name"
         static let roomNumber = "roomNumber"
@@ -71,10 +73,12 @@ class Player: NSObject, NSCoding {
     }
     
     // MARK: Modifier methods
+    // This method increments the Player's steps by a given number
     func incrSteps(numSteps: Int) {
         stepCount += numSteps
     }
     
+    // This method resets the Player by setting all values to zero
     func resetPlayer() {
         name = "EMPTY"
         roomNumber = 0
@@ -83,10 +87,12 @@ class Player: NSObject, NSCoding {
     }
     
     // MARK: Instance methods
+    // This method returns the name of this Player
     func getName() -> String {
         return name
     }
     
+    // This method returns this Player's step count
     func getSteps() -> Int {
         return stepCount
     }
