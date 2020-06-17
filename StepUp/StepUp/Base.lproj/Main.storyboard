@@ -32,6 +32,11 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EaW-C1-YKN" customClass="CircularProgressBar" customModule="StepUp" customModuleProvider="target">
+                                        <rect key="frame" x="59" y="98" width="296" height="410"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    </view>
                                 </subviews>
                                 <viewLayoutGuide key="contentLayoutGuide" id="Maw-pI-lAt"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="XSX-oR-vQl"/>
