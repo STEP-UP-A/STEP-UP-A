@@ -34,14 +34,30 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UIScrollViewDe
 
         let stepsDisplayView = buildStepDisplayView(width: pageWidth, height: pageHeight)
         let stepsAddView = buildStepInputView(width: pageWidth, height: pageHeight)
+
+        scrollViewSteps.addSubview(stepsDisplayView)
+        scrollViewSteps.addSubview(stepsAddView)
+        view.addSubview(greetingsLabel)
+
+        // set up scrollview delegate
+        scrollViewSteps.delegate = self
+        
+        // set up textfield delegate
+        stepInputTextField.delegate = self
+        
+    }
     
+    // adds a gradient background to the current view
+    //
+    // make sure to call this function before adding other elements to the view
+    // or it will cover the labels/textfields/etc.
+    func gradientBackground(viewToModify: UIView) {
         // set gradient background
         let layer0 = CALayer()
         layer0.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1).cgColor
         layer0.bounds = view.bounds
         layer0.position = view.center
-        stepsDisplayView.layer.addSublayer(layer0)
-        stepsAddView.layer.addSublayer(layer0)
+        viewToModify.layer.addSublayer(layer0)
         
         let layer1 = CAGradientLayer()
         layer1.colors = [
@@ -54,23 +70,13 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UIScrollViewDe
         layer1.transform = CATransform3DMakeAffineTransform(CGAffineTransform(a: 0, b: 1, c: -1, d: 0, tx: 1, ty: 0))
         layer1.bounds = view.bounds.insetBy(dx: -0.5*view.bounds.size.width, dy: -0.5*view.bounds.size.height)
         layer1.position = view.center
-        stepsDisplayView.layer.addSublayer(layer1)
-        stepsAddView.layer.addSublayer(layer1)
-
-        scrollViewSteps.addSubview(stepsDisplayView)
-        scrollViewSteps.addSubview(stepsAddView)
-
-        // set up scrollview delegate
-        scrollViewSteps.delegate = self
-        
-        // set up textfield delegate
-        stepInputTextField.delegate = self
-        
+        viewToModify.layer.addSublayer(layer1)
     }
     
     func buildStepDisplayView(width: CGFloat, height: CGFloat) -> UIView {
         let stepsDisplayView = UIView(frame: CGRect(x: 0, y: 0, width: width, height: height))
-        stepsDisplayView.backgroundColor = UIColor.blue
+        stepsDisplayView.backgroundColor = UIColor.white
+        gradientBackground(viewToModify: stepsDisplayView)
 
         //ELANA! HEY BUDDY! This is past Rithu :0. So the error I'm having is with the below line. I tried looking it up and doing the random
         //solutions people on stackOverflow suggested but nothing fixed it. I don't know why the progressBar just has a nil value when I followed the directions
@@ -88,8 +94,8 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UIScrollViewDe
     func buildStepInputView(width: CGFloat, height: CGFloat) -> UIView {
         let stepsAddView = UIView(frame: CGRect(x: width, y: 0, width: width, height: height))
         stepsAddView.backgroundColor = UIColor.white
+        gradientBackground(viewToModify: stepsAddView)
         
-        stepsAddView.addSubview(greetingsLabel)
         stepsAddView.addSubview(stepInputTextField)
         
         return stepsAddView
