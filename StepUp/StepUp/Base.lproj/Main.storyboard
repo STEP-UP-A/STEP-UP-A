@@ -56,6 +56,7 @@
                     <connections>
                         <outlet property="StepCountLabel" destination="rPE-c7-Qhz" id="QM2-rD-mxb"/>
                         <outlet property="greetingsLabel" destination="Vae-ls-0JJ" id="CoM-Az-wDO"/>
+                        <outlet property="progressBar" destination="EaW-C1-YKN" id="vkC-6G-Mv2"/>
                         <outlet property="scrollViewSteps" destination="1ae-Sf-jKh" id="U3r-VP-a6w"/>
                         <outlet property="stepInputTextField" destination="O76-s1-zwr" id="tbj-rA-0Zk"/>
                     </connections>

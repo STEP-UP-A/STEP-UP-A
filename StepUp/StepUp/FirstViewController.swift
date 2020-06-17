@@ -16,7 +16,7 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UIScrollViewDe
     @IBOutlet weak var stepInputTextField: UITextField!
     @IBOutlet weak var stepCountLabel: UILabel!
     @IBOutlet weak var greetingsLabel: UILabel!
-    @IBOutlet weak var progressBar:CircularProgressBar!
+    @IBOutlet weak var progressBar: CircularProgressBar!
     
     
     override func viewDidLoad() {
