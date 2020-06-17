@@ -15,6 +15,7 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UIScrollViewDe
     @IBOutlet weak var scrollViewSteps: UIScrollView!
     @IBOutlet weak var stepInputTextField: UITextField!
     @IBOutlet weak var stepCountLabel: UILabel!
+    @IBOutlet weak var greetingsLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,8 +77,7 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UIScrollViewDe
         let stepsAddView = UIView(frame: CGRect(x: width, y: 0, width: width, height: height))
         stepsAddView.backgroundColor = UIColor.white
         
-        
-        
+        stepsAddView.addSubview(greetingsLabel)
         stepsAddView.addSubview(stepInputTextField)
         
         return stepsAddView
