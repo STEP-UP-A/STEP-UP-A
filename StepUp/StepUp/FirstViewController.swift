@@ -31,6 +31,27 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UIScrollViewDe
         let stepsDisplayView = buildStepDisplayView(width: pageWidth, height: pageHeight)
         let stepsAddView = buildStepInputView(width: pageWidth, height: pageHeight)
     
+        // set gradient background
+        let layer0 = CALayer()
+        layer0.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1).cgColor
+        layer0.bounds = view.bounds
+        layer0.position = view.center
+        stepsDisplayView.layer.addSublayer(layer0)
+        stepsAddView.layer.addSublayer(layer0)
+        
+        let layer1 = CAGradientLayer()
+        layer1.colors = [
+            UIColor(red: 0.176, green: 0.612, blue: 0.859, alpha: 0.5).cgColor,
+            UIColor(red: 0.608, green: 0.318, blue: 0.878, alpha: 0).cgColor
+        ]
+        layer1.locations = [0, 1]
+        layer1.startPoint = CGPoint(x: 0.25, y: 0.5)
+        layer1.endPoint = CGPoint(x: 0.75, y: 0.5)
+        layer1.transform = CATransform3DMakeAffineTransform(CGAffineTransform(a: 0, b: 1, c: -1, d: 0, tx: 1, ty: 0))
+        layer1.bounds = view.bounds.insetBy(dx: -0.5*view.bounds.size.width, dy: -0.5*view.bounds.size.height)
+        layer1.position = view.center
+        stepsDisplayView.layer.addSublayer(layer1)
+        stepsAddView.layer.addSublayer(layer1)
 
         scrollViewSteps.addSubview(stepsDisplayView)
         scrollViewSteps.addSubview(stepsAddView)
@@ -53,7 +74,10 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UIScrollViewDe
     
     func buildStepInputView(width: CGFloat, height: CGFloat) -> UIView {
         let stepsAddView = UIView(frame: CGRect(x: width, y: 0, width: width, height: height))
-        stepsAddView.backgroundColor = UIColor.orange
+        stepsAddView.backgroundColor = UIColor.white
+        
+        
+        
         stepsAddView.addSubview(stepInputTextField)
         
         return stepsAddView
