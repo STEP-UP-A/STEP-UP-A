@@ -28,10 +28,9 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UIScrollViewDe
         scrollViewSteps.isPagingEnabled = true
         scrollViewSteps.showsHorizontalScrollIndicator = false
 
-        let stepsDisplayView = UIView(frame: CGRect(x: 0, y: 0, width: pageWidth, height: pageHeight))
-        stepsDisplayView.backgroundColor = UIColor.blue
-        let stepsAddView = UIView(frame: CGRect(x: pageWidth, y: 0, width: pageWidth, height: pageHeight))
-        stepsAddView.backgroundColor = UIColor.orange
+        let stepsDisplayView = buildStepDisplayView(width: pageWidth, height: pageHeight)
+        let stepsAddView = buildStepInputView(width: pageWidth, height: pageHeight)
+    
 
         scrollViewSteps.addSubview(stepsDisplayView)
         scrollViewSteps.addSubview(stepsAddView)
@@ -42,6 +41,22 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UIScrollViewDe
         // set up textfield delegate
         stepInputTextField.delegate = self
         
+    }
+    
+    func buildStepDisplayView(width: CGFloat, height: CGFloat) -> UIView {
+        let stepsDisplayView = UIView(frame: CGRect(x: 0, y: 0, width: width, height: height))
+        stepsDisplayView.backgroundColor = UIColor.blue
+        stepsDisplayView.addSubview(stepCountLabel)
+        
+        return stepsDisplayView
+    }
+    
+    func buildStepInputView(width: CGFloat, height: CGFloat) -> UIView {
+        let stepsAddView = UIView(frame: CGRect(x: width, y: 0, width: width, height: height))
+        stepsAddView.backgroundColor = UIColor.orange
+        stepsAddView.addSubview(stepInputTextField)
+        
+        return stepsAddView
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
