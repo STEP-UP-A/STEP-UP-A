@@ -17,6 +17,11 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UIScrollViewDe
     @IBOutlet weak var stepCountLabel: UILabel!
     @IBOutlet weak var greetingsLabel: UILabel!
     @IBOutlet weak var progressBar: CircularProgressBar!
+    @IBOutlet weak var streakLabel: UILabel!
+    @IBOutlet weak var orLabel: UILabel!
+    @IBOutlet weak var objectiveLabel: UILabel!
+    @IBOutlet weak var checkBoxButton: UIButton!
+    @IBOutlet weak var lapInputTextField: UITextField!
     
     
     override func viewDidLoad() {
@@ -38,6 +43,7 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UIScrollViewDe
         scrollViewSteps.addSubview(stepsDisplayView)
         scrollViewSteps.addSubview(stepsAddView)
         view.addSubview(greetingsLabel)
+        view.addSubview(streakLabel)
 
         // set up scrollview delegate
         scrollViewSteps.delegate = self
@@ -93,10 +99,20 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UIScrollViewDe
     
     func buildStepInputView(width: CGFloat, height: CGFloat) -> UIView {
         let stepsAddView = UIView(frame: CGRect(x: width, y: 0, width: width, height: height))
+        // set up the background
         stepsAddView.backgroundColor = UIColor.white
         gradientBackground(viewToModify: stepsAddView)
         
+        // give objective label rounded corners
+        objectiveLabel.layer.cornerRadius = 10
+        objectiveLabel.layer.masksToBounds = true
+    
+        // add all the elements to the step input screen
         stepsAddView.addSubview(stepInputTextField)
+        stepsAddView.addSubview(lapInputTextField)
+        stepsAddView.addSubview(orLabel)
+        stepsAddView.addSubview(objectiveLabel)
+        stepsAddView.addSubview(checkBoxButton)
         
         return stepsAddView
     }
