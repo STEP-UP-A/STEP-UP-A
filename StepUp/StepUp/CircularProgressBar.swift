@@ -57,7 +57,7 @@ class CircularProgressBar: UIView {
         }
     }
     
-    public func setProgress(to progressConstant: Double, withAnimation: Bool) {
+    public func setProgress(to progressConstant: Double, withAnimation: Bool) -> String? {
         
         var progress: Double {
             get {
@@ -75,6 +75,8 @@ class CircularProgressBar: UIView {
             animation.toValue = progress
             animation.duration = 2
             foregroundLayer.add(animation, forKey: "foregroundAnimation")
+            //animation.fillMode = CAMediaTimingFillMode.forwards
+            //animation.isRemovedOnCompletion = false
             
         }
         
@@ -91,6 +93,7 @@ class CircularProgressBar: UIView {
             }
         }
         timer.fire()
+        return self.label.text
         
     }
     
@@ -137,7 +140,8 @@ class CircularProgressBar: UIView {
         foregroundLayer.lineWidth = lineWidth
         foregroundLayer.fillColor = UIColor.clear.cgColor
         foregroundLayer.strokeColor = UIColor.red.cgColor
-        foregroundLayer.strokeEnd = 0
+        //Lolz I just commented the line below this out and the animation froze at end like I wanted NICE.
+        //foregroundLayer.strokeEnd = 0
         
         self.layer.addSublayer(foregroundLayer)
         

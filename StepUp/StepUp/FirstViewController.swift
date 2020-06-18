@@ -84,14 +84,12 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UIScrollViewDe
         stepsDisplayView.backgroundColor = UIColor.white
         gradientBackground(viewToModify: stepsDisplayView)
 
-        //ELANA! HEY BUDDY! This is past Rithu :0. So the error I'm having is with the below line. I tried looking it up and doing the random
-        //solutions people on stackOverflow suggested but nothing fixed it. I don't know why the progressBar just has a nil value when I followed the directions
-        //here (https://codeburst.io/circular-progress-bar-in-ios-d06629700334) and I'm pretty sure I set it up right. It might be a problem with Xcode
-        //not recognizing this custom class or something I need to change with the view?
-        
-        progressBar.setProgress(to: 1, withAnimation: true)
+        //Website I used to implement circular progress bar: https://codeburst.io/circular-progress-bar-in-ios-d06629700334
+        progressBar.labelSize = 60
+        //This is the percentage where the progress bar turns green
+        progressBar.safePercent = 10;
         stepsDisplayView.addSubview(progressBar)
-        //stepsDisplayView.addSubview(stepCountLabel)
+        stepsDisplayView.addSubview(stepCountLabel)
 
         
         return stepsDisplayView
@@ -131,8 +129,14 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UIScrollViewDe
         else {
         stepCountLabel.text = String(    (stepInputTextField.text as! NSString).integerValue + (stepCountLabel.text as! NSString).integerValue)
         }
+    
+        //I'm pretending 200 steps is a lap. And the students goal is 1 lap. Right now, the progress bar is showing how close they are to their goal percentage wise.
+        //I'll see if I can change it to where there's another circle showing how many laps / # goal laps the kid has done. Also I need to figure out what the inner
+        //"marathon" circle means. Is it the percentage of how close they are to finishing one lap? Look up real values of stuff, and get real inputs.
+        if((progressBar.setProgress(to: ((stepCountLabel.text as! NSString).doubleValue)/200, withAnimation:true) as! NSString).doubleValue != (stepCountLabel.text as! NSString).doubleValue){
+            let valueWeDontCareAbout = progressBar.setProgress(to: ((stepCountLabel.text as! NSString).doubleValue)/200, withAnimation:true)
+        }
     }
-
 
 }
 
