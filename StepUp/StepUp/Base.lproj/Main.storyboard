@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" fixedFrame="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1ae-Sf-jKh">
-                                <rect key="frame" x="0.0" y="44" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Step Count" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O76-s1-zwr">
@@ -32,7 +32,7 @@
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rPE-c7-Qhz">
-                                        <rect key="frame" x="8" y="0.0" width="46" height="50"/>
+                                        <rect key="frame" x="184" y="604" width="46" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -65,7 +65,7 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="           Hamstring Stretch" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jDs-B5-0AY">
-                                        <rect key="frame" x="32" y="588" width="350" height="60"/>
+                                        <rect key="frame" x="32" y="699" width="350" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -74,7 +74,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aqj-oC-NGT" customClass="CheckBox" customModule="StepUp" customModuleProvider="target">
-                                        <rect key="frame" x="46" y="601" width="35" height="35"/>
+                                        <rect key="frame" x="46" y="712" width="35" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="square" catalog="system"/>
                                     </button>
@@ -83,6 +83,13 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Today's Objectives:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SND-3J-akb">
+                                        <rect key="frame" x="97" y="662" width="219" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <viewLayoutGuide key="contentLayoutGuide" id="Maw-pI-lAt"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="XSX-oR-vQl"/>
@@ -91,7 +98,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="First" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Objectives" image="first" id="acW-dT-cKf"/>
                     <connections>
                         <outlet property="StepCountLabel" destination="rPE-c7-Qhz" id="QM2-rD-mxb"/>
                         <outlet property="checkBoxButton" destination="Aqj-oC-NGT" id="aVk-cs-yhJ"/>
@@ -104,6 +111,7 @@
                         <outlet property="scrollViewSteps" destination="1ae-Sf-jKh" id="U3r-VP-a6w"/>
                         <outlet property="stepInputTextField" destination="O76-s1-zwr" id="tbj-rA-0Zk"/>
                         <outlet property="streakLabel" destination="mVV-5a-i19" id="iUj-so-Nju"/>
+                        <outlet property="todaysObjectivesLabel" destination="SND-3J-akb" id="lGj-aZ-sgA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>

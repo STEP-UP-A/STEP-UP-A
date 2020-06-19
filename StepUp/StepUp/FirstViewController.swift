@@ -14,7 +14,7 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UIScrollViewDe
 
     @IBOutlet weak var scrollViewSteps: UIScrollView!
     @IBOutlet weak var stepInputTextField: UITextField!
-    @IBOutlet weak var stepCountLabel: UILabel!
+    @IBOutlet weak var stepCountLabel: UILabel!  // TODO: take this out eventually (not needed once circular progress bar done)
     @IBOutlet weak var greetingsLabel: UILabel!
     @IBOutlet weak var progressBar: CircularProgressBar!
     @IBOutlet weak var streakLabel: UILabel!
@@ -23,38 +23,54 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UIScrollViewDe
     @IBOutlet weak var checkBoxButton: UIButton!
     @IBOutlet weak var lapInputTextField: UITextField!
     @IBOutlet weak var marathonProgressBar: CircularProgressBar!
+    @IBOutlet weak var todaysObjectivesLabel: UILabel!
     
     
     override func viewDidLoad() {
+        // TODO:
+        // - figure out constraints (for if using different devices ie. ipad vs iphone)
+        // - fix layout when going from portrait to landscape
+        // - connect with Apple Health to display step count
+        // - connect with Player object to display correct name + streak info
+        // - duplicate objectives labels + buttons and make them display correct objectives according to current player (another scrollview to do this?)
         super.viewDidLoad()
-
-        
-        
+                
         // set up scrollview
         let pageWidth = scrollViewSteps.bounds.width
         let pageHeight = scrollViewSteps.bounds.height
-
         scrollViewSteps.contentSize = CGSize(width: 2*pageWidth, height: pageHeight)
         scrollViewSteps.isPagingEnabled = true
         scrollViewSteps.showsHorizontalScrollIndicator = false
+        
+        // add gradient background to scrollview
+        scrollViewSteps.backgroundColor = UIColor.white
+        gradientBackground(viewToModify: scrollViewSteps)
 
+        // set up each scrollview screen
         let stepsDisplayView = buildStepDisplayView(width: pageWidth, height: pageHeight)
         let stepsAddView = buildStepInputView(width: pageWidth, height: pageHeight)
-
+        
+        // add two subviews to scrollview
         scrollViewSteps.addSubview(stepsDisplayView)
         scrollViewSteps.addSubview(stepsAddView)
+        
+        // add elements that are present on both scrollview screens
         view.addSubview(greetingsLabel)
         view.addSubview(streakLabel)
+        view.addSubview(objectiveLabel)
+        view.addSubview(checkBoxButton)
+        view.addSubview(todaysObjectivesLabel)
 
         // set up scrollview delegate
         scrollViewSteps.delegate = self
         
         // set up textfield delegate
         stepInputTextField.delegate = self
+        lapInputTextField.delegate = self
         
     }
     
-    // adds a gradient background to the current view
+    // adds a gradient background to the given view
     //
     // make sure to call this function before adding other elements to the view
     // or it will cover the labels/textfields/etc.
@@ -80,10 +96,11 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UIScrollViewDe
         viewToModify.layer.addSublayer(layer1)
     }
     
+    // builds the screen that displays step progress
+    //
+    // takes in the width and height of the scrollview and returns the finished view
     func buildStepDisplayView(width: CGFloat, height: CGFloat) -> UIView {
         let stepsDisplayView = UIView(frame: CGRect(x: 0, y: 0, width: width, height: height))
-        stepsDisplayView.backgroundColor = UIColor.white
-        gradientBackground(viewToModify: stepsDisplayView)
 
         //Website I used to implement circular progress bar: https://codeburst.io/circular-progress-bar-in-ios-d06629700334
         progressBar.labelSize = 60
@@ -92,17 +109,17 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UIScrollViewDe
         marathonProgressBar.labelSize = 60
         stepsDisplayView.addSubview(progressBar)
         stepsDisplayView.addSubview(marathonProgressBar)
-        stepsDisplayView.addSubview(stepCountLabel)
+        stepsDisplayView.addSubview(stepCountLabel)  // TODO: take this out eventually (once circlular progress bar done)
 
         
         return stepsDisplayView
     }
     
+    // builds the screen that displays step input fields
+    //
+    // takes in the width and height of the scrollview and returns the finished view
     func buildStepInputView(width: CGFloat, height: CGFloat) -> UIView {
         let stepsAddView = UIView(frame: CGRect(x: width, y: 0, width: width, height: height))
-        // set up the background
-        stepsAddView.backgroundColor = UIColor.white
-        gradientBackground(viewToModify: stepsAddView)
         
         // give objective label rounded corners
         objectiveLabel.layer.cornerRadius = 10
@@ -112,25 +129,26 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UIScrollViewDe
         stepsAddView.addSubview(stepInputTextField)
         stepsAddView.addSubview(lapInputTextField)
         stepsAddView.addSubview(orLabel)
-        stepsAddView.addSubview(objectiveLabel)
-        stepsAddView.addSubview(checkBoxButton)
         
         return stepsAddView
     }
     
+    // hides the keyboard when the return button is pressed
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // hide keyboard
         textField.resignFirstResponder()
         return true
     }
     
+    // actions to complete when done editing either of the text fields (ie. return button pressed)
     func textFieldDidEndEditing(_ textField: UITextField) {
-        // do something with input text
+        // TODO: take out eventually and replace with circular progress bar
+        // if the label is currently empty just put input text in label
         if(stepCountLabel.text == nil){
             stepCountLabel.text = stepInputTextField.text
-        }
-        else {
-        stepCountLabel.text = String(    (stepInputTextField.text as! NSString).integerValue + (stepCountLabel.text as! NSString).integerValue)
+        } else {
+            // the label is not empty so add the input value to the label value
+            stepCountLabel.text = String(    (stepInputTextField.text as! NSString).integerValue + (stepCountLabel.text as! NSString).integerValue)
         }
     
         //I'm pretending 200 steps is a lap. And the students goal is 1 lap. Right now, the progress bar is showing how close they are to their goal percentage wise.
@@ -139,6 +157,10 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UIScrollViewDe
         if((progressBar.setProgress(to: ((stepCountLabel.text as! NSString).doubleValue)/200, withAnimation:true) as! NSString).doubleValue != (stepCountLabel.text as! NSString).doubleValue){
             let valueWeDontCareAbout = progressBar.setProgress(to: ((stepCountLabel.text as! NSString).doubleValue)/200, withAnimation:true)
         }
+        
+        // reset the textfields
+        stepInputTextField.text = ""
+        lapInputTextField.text = ""
     }
 
 }
