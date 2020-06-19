@@ -22,6 +22,7 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UIScrollViewDe
     @IBOutlet weak var objectiveLabel: UILabel!
     @IBOutlet weak var checkBoxButton: UIButton!
     @IBOutlet weak var lapInputTextField: UITextField!
+    @IBOutlet weak var marathonProgressBar: CircularProgressBar!
     
     
     override func viewDidLoad() {
@@ -88,7 +89,9 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UIScrollViewDe
         progressBar.labelSize = 60
         //This is the percentage where the progress bar turns green
         progressBar.safePercent = 10;
+        marathonProgressBar.labelSize = 60
         stepsDisplayView.addSubview(progressBar)
+        stepsDisplayView.addSubview(marathonProgressBar)
         stepsDisplayView.addSubview(stepCountLabel)
 
         

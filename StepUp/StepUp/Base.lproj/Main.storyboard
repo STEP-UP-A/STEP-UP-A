@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" fixedFrame="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1ae-Sf-jKh">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="896"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Step Count" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O76-s1-zwr">
@@ -32,7 +32,7 @@
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rPE-c7-Qhz">
-                                        <rect key="frame" x="183" y="339" width="46" height="50"/>
+                                        <rect key="frame" x="8" y="0.0" width="46" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -60,7 +60,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EaW-C1-YKN" customClass="CircularProgressBar" customModule="StepUp" customModuleProvider="target">
-                                        <rect key="frame" x="59" y="98" width="296" height="410"/>
+                                        <rect key="frame" x="58" y="193" width="296" height="211"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </view>
@@ -78,6 +78,11 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="square" catalog="system"/>
                                     </button>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z29-jb-Ntw" customClass="CircularProgressBar" customModule="StepUp" customModuleProvider="target">
+                                        <rect key="frame" x="58" y="412" width="296" height="182"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    </view>
                                 </subviews>
                                 <viewLayoutGuide key="contentLayoutGuide" id="Maw-pI-lAt"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="XSX-oR-vQl"/>
@@ -92,6 +97,7 @@
                         <outlet property="checkBoxButton" destination="Aqj-oC-NGT" id="aVk-cs-yhJ"/>
                         <outlet property="greetingsLabel" destination="Vae-ls-0JJ" id="CoM-Az-wDO"/>
                         <outlet property="lapInputTextField" destination="IjJ-se-g0S" id="KLG-sW-vVV"/>
+                        <outlet property="marathonProgressBar" destination="z29-jb-Ntw" id="AAg-Q1-IY9"/>
                         <outlet property="objectiveLabel" destination="jDs-B5-0AY" id="ZY8-45-NED"/>
                         <outlet property="orLabel" destination="f2S-J7-Plf" id="FDQ-LO-zrz"/>
                         <outlet property="progressBar" destination="EaW-C1-YKN" id="vkC-6G-Mv2"/>
