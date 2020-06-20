@@ -2,8 +2,8 @@
 //  CircularProgressBar.swift
 //  StepUp
 //
-//  Created by user173571 on 6/17/20.
-//  Copyright © 2020 Zach Grande. All rights reserved.
+//  Created by Rithu Manoharan on 6/17/20.
+//  Copyright © 2020 Rithu Manoharan. All rights reserved.
 //
 
     /*
@@ -19,7 +19,12 @@
 //
 //  Created by Yogesh Manghnani on 02/05/18.
 //  Copyright © 2018 Yogesh Manghnani. All rights reserved.
-//
+
+/*
+   methods and variables associated with creation of circular progress bar
+   Here's the website Rithu took this code from: https://codeburst.io/circular-progress-bar-in-ios-d06629700334
+ */
+
 import UIKit
 
 
@@ -51,13 +56,18 @@ class CircularProgressBar: UIView {
         }
     }
     
+    
     public var safePercent: Int = 100 {
         didSet{
+             // Uncomment the commented lines of this method if you want this to be the point where the circular progress bar turns from red to green
             setForegroundLayerColorForSafePercent()
         }
     }
     
-    public func setProgress(to progressConstant: Double, withAnimation: Bool) -> String? {
+    // shows progress (percentage wise) towards goal
+    // parameters - progressConstant: value from 0 to 1 representative of progress towards goal
+    // return - double value equivalent to value of progressConstant
+    public func setProgress(to progressConstant: Double, withAnimation: Bool) -> Double {
         
         var progress: Double {
             get {
@@ -80,6 +90,7 @@ class CircularProgressBar: UIView {
             
         }
         
+        var progressPercent:Double = 0
         var currentTime:Double = 0
         let timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { (timer) in
             if currentTime >= 2{
@@ -87,13 +98,21 @@ class CircularProgressBar: UIView {
             } else {
                 currentTime += 0.05
                 let percent = currentTime/2 * 100
-                self.label.text = "\(Int(progress * percent))"
-                self.setForegroundLayerColorForSafePercent()
+                /*
+                   progress percentage wise. useful if you want to change this label to number of laps, steps, miles, etc. instead.
+                   For example, the following code can be used to show the number of laps for the progressBar:
+                   self.label.text = "\(Int(progress * percent * (5/100)))". However, for the marathonProgressBar, different
+                   code would be needed to show miles or some meaningful label that's not percentage. It might be tricky editing
+                   this variable within the current organization of this class since different instances of the circular progress
+                   bar require different labels. Potential solution: make label.text a public class variable?
+                */
+                self.label.text = "\(Int(progress * percent))%"
+                progressPercent = progress * percent
                 self.configLabel()
             }
         }
         timer.fire()
-        return self.label.text
+        return progressPercent
         
     }
     
@@ -139,8 +158,9 @@ class CircularProgressBar: UIView {
         foregroundLayer.path = path.cgPath
         foregroundLayer.lineWidth = lineWidth
         foregroundLayer.fillColor = UIColor.clear.cgColor
-        foregroundLayer.strokeColor = UIColor.red.cgColor
-        //Lolz I just commented the line below this out and the animation froze at end like I wanted NICE.
+        //For below line: changed default from red to green
+        foregroundLayer.strokeColor = UIColor.green.cgColor
+        //Lolz I just commented the line below this out and the animation of the progress bar stays at the end NICE.
         //foregroundLayer.strokeEnd = 0
         
         self.layer.addSublayer(foregroundLayer)
@@ -161,12 +181,14 @@ class CircularProgressBar: UIView {
         label.center = pathCenter
     }
     
+    // Uncomment the commented lines of this method if you want this to be the point where the circular progress bar turns from red to green.
+    // The reason I took safePercent out is because the integer conversion of label prevents it from being more text descriptive.
     private func setForegroundLayerColorForSafePercent(){
-        if Int(label.text!)! >= self.safePercent {
+    //    if Int(label.text!)! >= self.safePercent {
             self.foregroundLayer.strokeColor = UIColor.green.cgColor
-        } else {
-            self.foregroundLayer.strokeColor = UIColor.red.cgColor
-        }
+    //    } else {
+    //        self.foregroundLayer.strokeColor = UIColor.red.cgColor
+    //    }
     }
     
     private func setupView() {

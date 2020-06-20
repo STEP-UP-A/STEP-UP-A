@@ -14,7 +14,7 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UIScrollViewDe
 
     @IBOutlet weak var scrollViewSteps: UIScrollView!
     @IBOutlet weak var stepInputTextField: UITextField!
-    @IBOutlet weak var stepCountLabel: UILabel!  // TODO: take this out eventually (not needed once circular progress bar done)
+    @IBOutlet weak var stepCountLabel: UILabel!  // TODO: potentially take this out, add previous number of steps as gray text in textbox
     @IBOutlet weak var greetingsLabel: UILabel!
     @IBOutlet weak var progressBar: CircularProgressBar!
     @IBOutlet weak var streakLabel: UILabel!
@@ -24,7 +24,9 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UIScrollViewDe
     @IBOutlet weak var lapInputTextField: UITextField!
     @IBOutlet weak var marathonProgressBar: CircularProgressBar!
     @IBOutlet weak var todaysObjectivesLabel: UILabel!
-    
+    @IBOutlet weak var lapCountLabel: UILabel! // TODO: potentially take this out, add previous number of steps as gray text in textbox
+    @IBOutlet weak var marathonLabel: UILabel!
+    @IBOutlet weak var progressToGoalLapsLabel: UILabel!
     
     override func viewDidLoad() {
         // TODO:
@@ -33,6 +35,11 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UIScrollViewDe
         // - connect with Apple Health to display step count
         // - connect with Player object to display correct name + streak info
         // - duplicate objectives labels + buttons and make them display correct objectives according to current player (another scrollview to do this?)
+        // - double check laps-to-mile conversion and actual steps-lap conversion for circular progress bar
+        // - implement actual number of goal laps (besides default of 5) based on objectives
+        // - change text field editing so that it does not depend on label values
+        // - format total count of steps and total count of laps
+        // - way to make nested circular progress bars (see figma) ?
         super.viewDidLoad()
                 
         // set up scrollview
@@ -60,6 +67,12 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UIScrollViewDe
         view.addSubview(objectiveLabel)
         view.addSubview(checkBoxButton)
         view.addSubview(todaysObjectivesLabel)
+        
+        // makes mutable labels blank initially
+        // TODO: double check if this is the right place to set these initial values before anything is inputted
+        stepCountLabel.text = ""
+        lapCountLabel.text = ""
+        progressToGoalLapsLabel.text = "0 / 5 Laps"
 
         // set up scrollview delegate
         scrollViewSteps.delegate = self
@@ -102,14 +115,16 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UIScrollViewDe
     func buildStepDisplayView(width: CGFloat, height: CGFloat) -> UIView {
         let stepsDisplayView = UIView(frame: CGRect(x: 0, y: 0, width: width, height: height))
 
-        //Website I used to implement circular progress bar: https://codeburst.io/circular-progress-bar-in-ios-d06629700334
-        progressBar.labelSize = 60
-        //This is the percentage where the progress bar turns green
-        progressBar.safePercent = 10;
-        marathonProgressBar.labelSize = 60
+        // format elements
+        progressBar.labelSize = 40
+        marathonProgressBar.labelSize = 40
+        marathonLabel.text = "Marathon"
+        
+        // add all the elements to the step display screen
         stepsDisplayView.addSubview(progressBar)
         stepsDisplayView.addSubview(marathonProgressBar)
-        stepsDisplayView.addSubview(stepCountLabel)  // TODO: take this out eventually (once circlular progress bar done)
+        stepsDisplayView.addSubview(progressToGoalLapsLabel)
+        stepsDisplayView.addSubview(marathonLabel)
 
         
         return stepsDisplayView
@@ -130,6 +145,9 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UIScrollViewDe
         stepsAddView.addSubview(lapInputTextField)
         stepsAddView.addSubview(orLabel)
         
+        stepsAddView.addSubview(stepCountLabel)
+        stepsAddView.addSubview(lapCountLabel)
+        
         return stepsAddView
     }
     
@@ -142,7 +160,7 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UIScrollViewDe
     
     // actions to complete when done editing either of the text fields (ie. return button pressed)
     func textFieldDidEndEditing(_ textField: UITextField) {
-        // TODO: take out eventually and replace with circular progress bar
+        // TODO: Change the below two if-else statements so that its not dependent on the value of the labels
         // if the label is currently empty just put input text in label
         if(stepCountLabel.text == nil){
             stepCountLabel.text = stepInputTextField.text
@@ -150,13 +168,41 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UIScrollViewDe
             // the label is not empty so add the input value to the label value
             stepCountLabel.text = String(    (stepInputTextField.text as! NSString).integerValue + (stepCountLabel.text as! NSString).integerValue)
         }
-    
-        //I'm pretending 200 steps is a lap. And the students goal is 1 lap. Right now, the progress bar is showing how close they are to their goal percentage wise.
-        //I'll see if I can change it to where there's another circle showing how many laps / # goal laps the kid has done. Also I need to figure out what the inner
-        //"marathon" circle means. Is it the percentage of how close they are to finishing one lap? Look up real values of stuff, and get real inputs.
-        if((progressBar.setProgress(to: ((stepCountLabel.text as! NSString).doubleValue)/200, withAnimation:true) as! NSString).doubleValue != (stepCountLabel.text as! NSString).doubleValue){
-            let valueWeDontCareAbout = progressBar.setProgress(to: ((stepCountLabel.text as! NSString).doubleValue)/200, withAnimation:true)
+        
+        // if the label is currently empty just put input text in label
+        if(lapCountLabel.text == nil){
+            lapCountLabel.text = lapInputTextField.text
+        } else {
+            // the label is not empty so add the input value to the label value
+            lapCountLabel.text = String(    (lapInputTextField.text as! NSString).integerValue + (lapCountLabel.text as! NSString).integerValue)
         }
+    
+        // -updating circular progress bars-
+        /* assuming 200 steps is a lap and the students goal is 5 laps. Right now, the progress bar is showing how close they are to their goal percentage wise.
+           Currently, we don't know how many steps are in a lap. */
+        let numSteps = (stepCountLabel.text as! NSString).doubleValue
+        let inputLaps = (lapCountLabel.text as! NSString).doubleValue
+        let numLaps = numSteps/200 + inputLaps
+        let goalLaps = 5.0
+        
+        // -goal laps progress bar
+        if(progressBar.setProgress(to: numLaps/goalLaps, withAnimation:true) != numLaps/goalLaps){
+            // This value could be converted to something useful like number of laps and potentially shown in a label on the circular progress bar
+            let currentProgressPercent = progressBar.setProgress(to: numLaps/goalLaps, withAnimation:true)
+        }
+        
+        // assuming, from StepUpPoster on the drive, 10 laps is 1 mile and 26 miles is a marathon.
+        let numMiles = numLaps/10.0
+        
+        // -marathon progress bar
+        if(marathonProgressBar.setProgress(to: numMiles/26.0, withAnimation:true) != numMiles/26.0){
+            // This value could be converted to something useful like number of miles and potentially shown in a label on the circular progress bar
+            let currentMarathonProgressPercent = marathonProgressBar.setProgress(to: numMiles/26.0, withAnimation:true)
+        }
+        
+        // displays number of lab completed out of a goal # of laps
+        let integerNumLaps = Int(numLaps)
+        progressToGoalLapsLabel.text = String(integerNumLaps) + " / 5 laps"
         
         // reset the textfields
         stepInputTextField.text = ""

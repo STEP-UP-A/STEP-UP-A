@@ -32,7 +32,7 @@
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rPE-c7-Qhz">
-                                        <rect key="frame" x="184" y="604" width="46" height="50"/>
+                                        <rect key="frame" x="353" y="218" width="46" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -60,7 +60,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EaW-C1-YKN" customClass="CircularProgressBar" customModule="StepUp" customModuleProvider="target">
-                                        <rect key="frame" x="58" y="193" width="296" height="211"/>
+                                        <rect key="frame" x="58" y="207" width="296" height="197"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </view>
@@ -90,6 +90,27 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKh-CW-Hvy">
+                                        <rect key="frame" x="353" y="361" width="44" height="43"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cze-kx-goB">
+                                        <rect key="frame" x="169" y="179" width="131" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R5W-Sg-B1h">
+                                        <rect key="frame" x="169" y="602" width="156" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <viewLayoutGuide key="contentLayoutGuide" id="Maw-pI-lAt"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="XSX-oR-vQl"/>
@@ -103,11 +124,14 @@
                         <outlet property="StepCountLabel" destination="rPE-c7-Qhz" id="QM2-rD-mxb"/>
                         <outlet property="checkBoxButton" destination="Aqj-oC-NGT" id="aVk-cs-yhJ"/>
                         <outlet property="greetingsLabel" destination="Vae-ls-0JJ" id="CoM-Az-wDO"/>
+                        <outlet property="lapCountLabel" destination="ZKh-CW-Hvy" id="dy1-vu-cDb"/>
                         <outlet property="lapInputTextField" destination="IjJ-se-g0S" id="KLG-sW-vVV"/>
+                        <outlet property="marathonLabel" destination="R5W-Sg-B1h" id="Asc-yx-RiY"/>
                         <outlet property="marathonProgressBar" destination="z29-jb-Ntw" id="AAg-Q1-IY9"/>
                         <outlet property="objectiveLabel" destination="jDs-B5-0AY" id="ZY8-45-NED"/>
                         <outlet property="orLabel" destination="f2S-J7-Plf" id="FDQ-LO-zrz"/>
                         <outlet property="progressBar" destination="EaW-C1-YKN" id="vkC-6G-Mv2"/>
+                        <outlet property="progressToGoalLapsLabel" destination="cze-kx-goB" id="atA-eI-tUW"/>
                         <outlet property="scrollViewSteps" destination="1ae-Sf-jKh" id="U3r-VP-a6w"/>
                         <outlet property="stepInputTextField" destination="O76-s1-zwr" id="tbj-rA-0Zk"/>
                         <outlet property="streakLabel" destination="mVV-5a-i19" id="iUj-so-Nju"/>
