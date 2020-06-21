@@ -85,8 +85,6 @@ class CircularProgressBar: UIView {
             animation.toValue = progress
             animation.duration = 2
             foregroundLayer.add(animation, forKey: "foregroundAnimation")
-            //animation.fillMode = CAMediaTimingFillMode.forwards
-            //animation.isRemovedOnCompletion = false
             
         }
         
@@ -104,7 +102,7 @@ class CircularProgressBar: UIView {
                    self.label.text = "\(Int(progress * percent * (5/100)))". However, for the marathonProgressBar, different
                    code would be needed to show miles or some meaningful label that's not percentage. It might be tricky editing
                    this variable within the current organization of this class since different instances of the circular progress
-                   bar require different labels. Potential solution: make label.text a public class variable?
+                   bar require different labels. Potential solution: pass in values/formula for labels?
                 */
                 self.label.text = "\(Int(progress * percent))%"
                 progressPercent = progress * percent

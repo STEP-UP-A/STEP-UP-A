@@ -40,6 +40,7 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UIScrollViewDe
         // - change text field editing so that it does not depend on label values
         // - format total count of steps and total count of laps
         // - way to make nested circular progress bars (see figma) ?
+        // - figure out how to display miles, laps etc. on progress bars rather than percentage
         super.viewDidLoad()
                 
         // set up scrollview
@@ -161,6 +162,7 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UIScrollViewDe
     // actions to complete when done editing either of the text fields (ie. return button pressed)
     func textFieldDidEndEditing(_ textField: UITextField) {
         // TODO: Change the below two if-else statements so that its not dependent on the value of the labels
+        // ... make it dependent on variable instead.
         // if the label is currently empty just put input text in label
         if(stepCountLabel.text == nil){
             stepCountLabel.text = stepInputTextField.text
