@@ -9,6 +9,10 @@
 import UIKit
 
 class Player: NSObject, NSCoding {
+    required convenience init?(coder: NSCoder) {
+        self.init(name: "", roomNumber: 0, stepCount: 0, lapCount: 0)
+    }
+    
     
     // MARK: Properties
     var name: String
@@ -56,12 +60,12 @@ class Player: NSObject, NSCoding {
         coder.encode(lapCount, forKey: PropertyKey.lapCount)
     }
     
-    required convenience init?(coder aDecoder: NSCoder) {
+    /*required convenience init?(coder aDecoder: NSCoder) {
         // The name is required. If we cannot decode a name string, the initializer should fail
-        guard let name = aDecoder.decodeObject(forKey: PropertyKey.name) as? String else {
+        /*guard let name = aDecoder.decodeObject(forKey: PropertyKey.name) as? String else {
             os_log("Unable to decode the name for a Player object.", log: OSLog.default, type: .debug)
             return nil
-        }
+        }*/
         
         // Because photo is an optional property of Meal, just use conditional cast
         let roomNumber = aDecoder.decodeObject(forKey: PropertyKey.roomNumber)
@@ -69,8 +73,8 @@ class Player: NSObject, NSCoding {
         let lapCount = aDecoder.decodeInteger(forKey: PropertyKey.lapCount)
         
         // Must call designated initializer
-        self.init(name: name, roomNumber: roomNumber as! Int, stepCount: stepCount, lapCount: lapCount)
-    }
+        //self.init(name: name, roomNumber: roomNumber as! Int, stepCount: stepCount, lapCount: lapCount)
+    }*/
     
     // MARK: Modifier methods
     // This method increments the Player's steps by a given number
