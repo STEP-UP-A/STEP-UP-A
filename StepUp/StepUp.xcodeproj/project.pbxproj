@@ -16,6 +16,8 @@
 		3B34965F244E654E006935C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B34965D244E654E006935C0 /* LaunchScreen.storyboard */; };
 		3B34966A244E654E006935C0 /* StepUpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B349669244E654E006935C0 /* StepUpTests.swift */; };
 		3BA772FA246A1662001031EA /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA772F9246A1662001031EA /* Player.swift */; };
+		4D314189249C2C0E000ABB36 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D314188249C2C0E000ABB36 /* CheckBox.swift */; };
+		AF892C28249A89A3009863BF /* CircularProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF892C27249A89A3009863BF /* CircularProgressBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,8 @@
 		3B349669244E654E006935C0 /* StepUpTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepUpTests.swift; sourceTree = "<group>"; };
 		3B34966B244E654E006935C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3BA772F9246A1662001031EA /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		4D314188249C2C0E000ABB36 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
+		AF892C27249A89A3009863BF /* CircularProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +96,8 @@
 				3B34965B244E654E006935C0 /* Assets.xcassets */,
 				3B34965D244E654E006935C0 /* LaunchScreen.storyboard */,
 				3B349660244E654E006935C0 /* Info.plist */,
+				AF892C27249A89A3009863BF /* CircularProgressBar.swift */,
+				4D314188249C2C0E000ABB36 /* CheckBox.swift */,
 			);
 			path = StepUp;
 			sourceTree = "<group>";
@@ -208,9 +214,11 @@
 			files = (
 				3B349657244E654D006935C0 /* SecondViewController.swift in Sources */,
 				3B349655244E654D006935C0 /* FirstViewController.swift in Sources */,
+				4D314189249C2C0E000ABB36 /* CheckBox.swift in Sources */,
 				3B349651244E654D006935C0 /* AppDelegate.swift in Sources */,
 				3BA772FA246A1662001031EA /* Player.swift in Sources */,
 				3B349653244E654D006935C0 /* SceneDelegate.swift in Sources */,
+				AF892C28249A89A3009863BF /* CircularProgressBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
